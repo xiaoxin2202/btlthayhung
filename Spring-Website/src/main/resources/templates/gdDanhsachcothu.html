@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>Xếp cặp thi đấu</title>
+    <style>
+
+
+        body {
+            min-height: 825px;
+            background-image: linear-gradient(to right top, #8ed4c7, #54e3e7, #85e4e7);
+
+        }
+
+        .container {
+            background-color: white;
+            display: flex;
+            margin-top: 7%;
+            margin-left: 25%;
+            margin-right: 25%;
+            min-height: 600px;
+            border-radius: 3%;
+            box-shadow: 29px 28px 65px -3px rgb(68, 64, 64);
+            width: 970px !important;
+        }
+
+        .main {
+            margin: 4%;
+        }
+
+        .name {
+            display: flex;
+            margin-left: 450px;
+        }
+
+        #dangxuat {
+            margin-left: 50px;
+        }
+
+        #title {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .chucnang {
+            margin-top: 5%;
+            margin-left: 100px;
+
+        }
+
+        button {
+            width: 500px;
+            height: 40px;
+            margin-top: 4%;
+            display: flex;
+            border-radius: 15px;
+        }
+
+        #button1 {
+            width: 100px;
+            color: black;
+            margin-left: 50px;
+            margin-top: 0px;
+        }
+
+        .btn {
+            color: black;
+            background-color: #54e3e7;
+            width: 100px;
+        }
+
+        .btn:hover {
+            color: black;
+            background-color: #44e4ea;
+        }
+
+        .link {
+            color: black;
+        }
+
+        .textbt {
+            margin: 0 auto;
+            color: blue;
+            margin-top: 6px;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        #thoat {
+            width: 200px;
+            margin-left: 50px;
+        }
+
+        #xepcap {
+            width: 200px;
+            margin-left: 100px;
+        }
+
+        table, th, td {
+            width: auto;
+            margin-left: 26%;
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 15px;
+        }
+
+        tr:hover {
+            background-color: #ffc781;
+        }
+
+        th {
+            background-color: #c9bb5b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="main">
+        <div class="name">
+            <h2 class="title">Nguyễn Huy Tâm</h2>
+            <h2 class="btn" id="dangxuat">Đăng xuất</h2>
+        </div>
+        <br>
+        <label class="textbt">Chọn vòng đấu:</label>
+        <select class="btn">
+            <option th:each="round : ${roundList} " th:utext="${round.getId()}">
+            </option>
+
+        </select>
+        <button class="btn" id="button1">
+            <a class="link" href="/gdDanhsachcothu2">chọn</a>
+        </button>
+
+        <h1 id="title">Danh sách cờ thủ </h1>
+
+
+        <div>
+            <table id="tableId">
+                <tr>
+                    <th>Mã</th>
+                    <th>Họ và tên</th>
+                    <th>Năm sinh</th>
+                    <th>Quốc tịch</th>
+                    <th>Elo mới</th>
+                </tr>
+                <tr th:each="cothu:${cothuList}">
+                    <td th:utext="${cothu.getId()}"></td>
+                    <td th:utext="${cothu.getTen()}"></td>
+                    <td th:utext="${cothu.getNamsinh()}"></td>
+                    <td th:utext="${cothu.getQuoctich()}"></td>
+                    <td th:utext="${cothu.getElohientai()}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="chucnang">
+            <button class="btn" id="xepcap">
+                <a class="link" href="/gdXepCapThiDau">Xếp Cặp Thi Đấu </a>
+            </button>
+            <button class="btn" id="thoat">
+                <a class="link" href="gdChinhQL.html">Quay Lại</a>
+            </button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+<script>
+    function addRow() {
+
+        var table = document.getElementById("tableId");
+        var rows = table.getElementsByTagName("tr");
+        for (i = 0; i < rows.length; i++) {
+            var currentRow = table.rows[i];
+
+            var createClickHandler = function (row) {
+                return function () {
+
+                    var cell = row.getElementsByTagName("td")[0];
+                    var id = cell.innerHTML;
+                    // alert("id"+id);
+                    var a = document.createElement("a");
+                    var x = "/gdDanhsachcothu/" + id;
+                    a.setAttribute('href', x);
+                    a.click()
+                };
+            };
+            currentRow.onclick = createClickHandler(currentRow);
+        }
+    }
+
+    window.onload = addRow();
+</script>

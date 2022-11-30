@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách cặp đấu</title>
+    <style>
+        body {
+            min-height: 825px;
+            background-image: linear-gradient(to right top, #ff4988, #ffc781, #fffefc);
+
+        }
+
+        .container {
+            background-color: white;
+            display: flex;
+            margin-top: 7%;
+            margin-left: 25%;
+            margin-right: 25%;
+            min-height: 600px;
+            border-radius: 3%;
+            box-shadow: 29px 28px 65px -3px rgb(68, 64, 64);
+        }
+
+        .main {
+            margin: 4%;
+        }
+
+        .name {
+            display: flex;
+            margin-left: 450px;
+        }
+
+        #dangxuat {
+            margin-left: 50px;
+        }
+
+        #title {
+            color: red;
+            margin-left: 280px;
+        }
+
+        .chucnang {
+            margin-top: 5%;
+            margin-left: 200px;
+
+        }
+
+        button {
+            width: 500px;
+            height: 40px;
+            margin-top: 4%;
+            display: flex;
+            border-radius: 15px;
+        }
+
+        .btn {
+            color: black;
+            background-color: #34ce57;
+            width: auto;
+        }
+
+        .btn:hover {
+            color: black;
+            background-color: green;
+        }
+
+        .textbt {
+            margin: 0 auto;
+            color: blue;
+            margin-top: 6px;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        #thoat {
+            width: auto;
+            padding: 10px;
+            margin-left: 140px;
+            text-align: center;
+        }
+
+        #xepcap {
+            width: auto;
+        }
+
+        table, th, td {
+            width: auto;
+            margin-left: 22%;
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 20px;
+        }
+
+        table.center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        tr:hover {
+            background-color: #ffc781;
+        }
+
+        th {
+            background-color: #c9bb5b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="main">
+        <div class="name">
+            <h2 class="btn" id="dangxuat">Đăng xuất</h2>
+        </div>
+
+        <h1 id="title">Danh sách cờ thủ </h1>
+        <div>
+            <table id="tableId" class="center">
+                <tr>
+                    <th></th>
+                    <th>P1</th>
+                    <th>P2</th>
+                </tr>
+                <tr th:each="item:${banList}">
+                    <td th:utext="${item.getId()}"></td>
+                    <td th:utext="${item.getP1().getTen()}"></td>
+                    <td th:utext="${item.getP2().getTen()}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="chucnang">
+            <button class="btn" id="thoat">
+                <a href="/gdChinhQL">Trang Chính</a>
+            </button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+<script>
+    function addRow() {
+
+        var table = document.getElementById("tableId");
+        var rows = table.getElementsByTagName("tr");
+        for (i = 0; i < rows.length; i++) {
+            var currentRow = table.rows[i];
+
+            var createClickHandler = function (row) {
+                return function () {
+
+                    var cell = row.getElementsByTagName("td")[0];
+                    var id = cell.innerHTML;
+                    // alert("id"+id);
+                    var a = document.createElement("a");
+
+                    var x = "/gdChiTietCapDau/" + id;
+                    a.setAttribute('href', x);
+                    a.click()
+                };
+            };
+            currentRow.onclick = createClickHandler(currentRow);
+        }
+    }
+
+    window.onload = addRow();
+</script>

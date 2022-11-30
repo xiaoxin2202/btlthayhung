@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            min-height: 825px;
+            background-image: linear-gradient(to right top, #ff4988, #ffc781, #fffefc);
+            
+        }
+        .container{
+            background-color: white;
+            display: flex;
+            margin-top: 7%;
+            margin-left: 25%;
+            margin-right: 25%;
+            min-height: 600px;
+            border-radius: 3%;
+            box-shadow: 29px 28px 65px -3px rgb(68, 64, 64);
+        }
+        .main{
+            margin: 4%;           
+        }
+        .name{
+            display: flex;
+            margin-left: 450px;
+        }
+        #dangxuat{
+            margin-left: 50px;
+        }
+        #title{
+            color: red;
+            margin-left: 280px;
+        }
+        .chucnang{
+            margin-top: 5%;
+            margin-left: 200px;
+            
+        }
+        button{
+            width: 500px;
+            height: 40px;
+            margin-top: 4%;
+            display: flex;
+            border-radius: 15px;  
+        }
+        .textbt{  
+            margin: 0 auto;
+            color: blue;
+            margin-top: 6px;
+            font-size: large;
+            font-weight: bold;
+        }
+        #thoat{
+            width: 200px;
+            margin-left: 150px;
+        }
+        table, th, td {
+            width: 700px;
+            padding-top: 10px;
+            margin-left: 12%;
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        tr:hover{
+            background-color: #ffc781;
+        }
+        th{
+            background-color: #c9bb5b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="name">
+                <h2>Nguyen Van Nam</h2>
+                <h2 id="dangxuat">Đăng xuất</h2>
+            </div>
+            
+            <h1 id="title">Các trận cờ thủ đã đấu</h1>
+            <div  class="table">
+                <table>
+                    <tr>
+                        <th>Mã</th>
+                        <th>Tên đối thủ</th>
+                        <th>Thay đổi elo</th>
+                        <th>Kết Quả</th>
+                    </tr>
+                    <tr th:each="thamgia:${thamgiaList}" >
+                        <td th:utext="${thamgia.getId()}"></td>
+                        <td th:utext="${thamgia.getTenDoithu()}"></td>
+                        <td th:utext="${thamgia.getThaydoiElo()}"></td>
+                        <td th:utext="${thamgia.getKetQua()}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

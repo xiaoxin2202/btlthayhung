@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            min-height: 825px;
+            background-image: linear-gradient(to right top, #8ed4c7, #54e3e7, #85e4e7);
+            
+        }
+        .container{
+            background-color: white;
+            display: flex;
+            margin-top: 7%;
+            margin-left: 25%;
+            margin-right: 25%;
+            min-height: 600px;
+            border-radius: 3%;
+            box-shadow: 29px 28px 65px -3px rgb(68, 64, 64);
+        }
+        .main{
+            margin: 4%;           
+        }
+        .name{
+            display: flex;
+            margin-left: 380px;
+        }
+        #dangxuat{
+            margin-left: 50px;
+        }
+        #title{
+            font-size: 30px;
+            margin-left: 340px;
+        }
+        .chucnang{
+            margin-top: 5%;
+            margin-left: 200px;
+            
+        }
+        .btn{
+            color: black;
+            background-color: #34ce57;
+            width: 100px;
+        }
+
+        .btn:hover{
+            color: black;
+            background-color: green;
+        }
+
+        button{
+            width: 500px;
+            height: 40px;
+            margin-top: 4%;
+            display: flex;
+            border-radius: 10px;
+            border: 1px solid #86b7fe;
+        }
+        .textbt{  
+            margin: 0 auto;
+            margin-top: 6px;
+            font-size: large;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="name">
+                <h2 th:text="${quanli.ten}"></h2>
+<!--                <h2 class="btn" id="dangxuat">Đăng xuất</h2>-->
+            </div>
+            
+            <h1 id="title">Menu chức năng </h1>
+            <div class="chucnang">
+                <button><a href="/gdDanhsachcothu" class="textbt">Xếp cặp thi đấu </a></button>
+                <button><p class="textbt">Quản lí thông tin kỳ thủ</p></button>
+                <button><p class="textbt">Cập nhật kết quả</p></button>
+                <button><p class="textbt">Xem bảng xếp hạng</p></button>
+                <button><p class="textbt">Xếp thống kê<p></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
